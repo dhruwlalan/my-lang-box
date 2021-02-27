@@ -100,7 +100,20 @@ const { GH_TOKEN, GIST_ID, USERNAME, DAYS } = process.env;
         )
       );
 
-    const langs = await runLinguist(files);
+    const filteredFiles = files.filter((file) => {
+      const isNotJson =
+        file.path !== "package.json" &&
+        file.path !== "package-lock.json" &&
+        file.path !== "themes/darklight-color-theme.json" &&
+        file.path !== "my-vs-color-themes/darklight-color-theme.json" &&
+        file.path !== "my-vs-color-themes/themes/darklight.json" &&
+        file.path !== "dist/stats.json";
+      return isNotJson;
+    });
+    console.log(filteredFiles);
+
+    const langs = await runLinguist(filteredFiles);
+
     console.log(`\n`);
     langs.forEach((l) =>
       console.log(
