@@ -101,7 +101,7 @@ const { GH_TOKEN, GIST_ID, USERNAME, DAYS } = process.env;
       );
 
     const filteredFiles = files.filter((file) => {
-      const isNotJson = !file.path.includes('.json');
+      const isNotJson = !file.path.includes('.json') && !file.path.includes('.yaml');
 //         file.path !== "package.json" &&
 //         file.path !== "package-lock.json" &&
 //         file.path !== "themes/darklight-color-theme.json" &&
